@@ -1,8 +1,9 @@
-import Posts from '@/network/PostsRequests'
+
+import PostsList from './components/PostsList.vue'
 
 export default {
   name: 'app',
-  async created(){
-    await Posts.getPosts()
-  }
+  components: {
+    PostsList
+  },
 };
