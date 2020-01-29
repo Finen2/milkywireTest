@@ -4,13 +4,13 @@ import url from './URL';
 class Posts {
   // Get posts
   static async getPosts() {
-    let testObject = {}
+    let posts = {}
     await axios.get(url + 'posts').then((resp: any) => {
-      testObject = resp.data
+      posts = resp.data
     }).catch(error => {
-      testObject = error
+      posts = error
     });
-    return testObject
+    return posts
   }
   // Post posts
   static postPost() {
@@ -26,12 +26,14 @@ class Posts {
     });
   }
   // Get specific post
-  static getSpecificPost(id: string) {
-    axios.get(url + 'posts/' + id).then((resp: any) => {
-      console.log(resp.data);
+  static async getSpecificPost(id: string) {
+    let specificPost = {}
+    await axios.get(url + 'posts/' + id).then((resp: any) => {
+      specificPost = resp.data
     }).catch(error => {
-      console.log(error);
+      specificPost = error
     });
+    return specificPost
   }
   // Put specific post
   static putSpecificPost() {

@@ -1,6 +1,9 @@
 <template lang="html">
   <div class="postsList">
-    PostsList
+    <ModalPost ref="modalComponent" />
+    <div class="" v-for="post in posts">
+      <SinglePost :data="post" :key="post.id"/>
+    </div>
   </div>
 </template>
 
