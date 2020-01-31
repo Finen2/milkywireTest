@@ -16,6 +16,12 @@ export default {
   methods: {
     showModal(this: any, id: string) {
       this.$refs.modalComponent.showModal(id);
+    },
+    async loadPosts(this: any) {
+      this.posts = await Posts.getPosts();
+    },
+    reload(this: any) {
+      location.reload();
     }
   },
   computed: {
@@ -23,7 +29,7 @@ export default {
         return this.posts.length;
       }
     },
-  async created(this: any) {
-    this.posts = await Posts.getPosts();
+  created(this: any) {
+    this.loadPosts()
   }
 };

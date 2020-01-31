@@ -41,7 +41,7 @@ class Posts {
   }
   // Delete specific post
   static deletePost(id: string) {
-     return axios.delete(`${url} + 'posts/' + ${id}`)
+     return axios.delete(`${url}posts/${id}`)
   }
 }
 export default Posts;
