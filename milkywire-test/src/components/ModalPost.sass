@@ -1,1 +1,30 @@
 @import '@/sass/Import'
+
+.modalPost
+  width: 100%
+  height: 100vh
+
+  +element('btns')
+    padding-top: 1em
+    padding-bottom: 1em
+
+    +element('singleBtn')
+      &:hover
+        transform: scale(1.2)
+
+.collapseCard
+  border: none
+  box-shadow: none
+
+  +element('bio')
+    padding-bottom: 1em
+    padding-top: 1em
+
+    +element('userName')
+      &:hover
+        text-decoration: underline
+        transform: scale(1.1)
+        cursor: pointer
+
+  +element('eraseButtons')
+    width: 100%

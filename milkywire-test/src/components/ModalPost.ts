@@ -1,9 +1,17 @@
 import Posts from '@/network/PostsRequests'
+import Impacter from '@/network/ImpacterRequests'
 
 export default {
   name: 'modal',
   data: () => ({
-    post: {}
+    post: {},
+    image: '',
+    imageDescription: {
+      type: String,
+      default: '',
+    },
+    impacter: {},
+    mainProps: { width: 75, height: 75, class: 'm1' }
   }),
   props: {
     modalId: {},
@@ -11,11 +19,17 @@ export default {
   },
   methods: {
     async showModal(this: any, id: string) {
-      this.$refs['my-modal'].show('bv-modal-example');
+      this.$refs['post-modal'].show('modalPost');
       this.post = await Posts.getSpecificPost(id);
+      this.impacter = await Impacter.getSpecificImpacter(this.post.impacter_id);
+      this.defineImage()
     },
     hideModal(this: any) {
-      this.$refs['my-modal'].hide('bv-modal-example');
+      this.$refs['post-modal'].hide('modalPost');
+    },
+    defineImage(this: any) {
+      this.image = this.post.data.media[0].image;
+      this.imageDescription = this.post.data.media[0].description;
     },
     erasePost(this: any, id: string) {
       Posts.deletePost(id);

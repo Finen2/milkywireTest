@@ -6,8 +6,8 @@ export default {
   name: 'postsList',
   data: () => ({
     posts: [],
-    perPage: 50,
-    currentPage: 1,
+    currentPage: 0,
+    itemsPerPage: 50,
   }),
   components: {
     ModalPost,
@@ -17,19 +17,19 @@ export default {
     showModal(this: any, id: string) {
       this.$refs.modalComponent.showModal(id);
     },
-    async loadPosts(this: any) {
-      this.posts = await Posts.getPosts();
-    },
     reload(this: any) {
       location.reload();
-    }
-  },
-  computed: {
-      rows(this: any) {
-        return this.posts.length;
-      }
     },
-  created(this: any) {
-    this.loadPosts()
+    nextPage(this: any) {
+      console.log('trigger next')
+      if((this.currentPage * this.pageSize) < this.posts.length) this.currentPage++;
+    },
+    prevPage(this: any) {
+      console.log('trigger prev')
+      if(this.currentPage > 1) this.currentPage-- ;
+    },
+  },
+  async created(this: any) {
+    this.posts = await Posts.getPosts();
   }
 };
