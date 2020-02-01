@@ -1,21 +1,21 @@
 import Posts from '@/network/PostsRequests'
 import Impacter from '@/network/ImpacterRequests'
+import ModalImpacter from './ModalImpacter.vue'
 
 export default {
   name: 'modal',
   data: () => ({
     post: {},
     image: '',
-    imageDescription: {
-      type: String,
-      default: '',
-    },
+    imageDescription: '',
     impacter: {},
-    mainProps: { width: 75, height: 75, class: 'm1' }
   }),
   props: {
     modalId: {},
     allPosts: {}
+  },
+  components: {
+    ModalImpacter
   },
   methods: {
     async showModal(this: any, id: string) {
@@ -23,6 +23,10 @@ export default {
       this.post = await Posts.getSpecificPost(id);
       this.impacter = await Impacter.getSpecificImpacter(this.post.impacter_id);
       this.defineImage()
+    },
+    showChildModal(this: any, id: string) {
+      this.$refs.modalImpacterComponent.showPostModal();
+      this.hideModal();
     },
     hideModal(this: any) {
       this.$refs['post-modal'].hide('modalPost');
@@ -45,6 +49,6 @@ export default {
       const index = this.allPosts.map((element: any) => element.id).indexOf(this.post.id);
       const previousPostId = this.allPosts[index - 1].id;
       this.showModal(previousPostId);
-    }
+    },
   },
 };

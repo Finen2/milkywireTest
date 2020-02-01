@@ -1,11 +1,11 @@
 export default {
   name: 'singlePost',
   props: {
-    data: {}
+    data: {},
   },
   methods: {
     triggerModal(this: any){
-      this.$parent.showModal(this.data.id)
-    }
-  }
+      this.$parent.showModal(this.data.id);
+    },
+  },
 }
