@@ -5,5 +5,27 @@
     transform: scale(1.2)
 
 .profileInfo
+  margin-bottom: 2em
+  margin-top: 1em
 
 .postsList
+  margin-top: 1em
+
+.card
+  border: none
+  box-shadow: none
+
+  +element('bio')
+    padding-bottom: 1em
+    padding-top: 1em
+
+    +element('userName')
+      &:hover
+        text-decoration: underline
+        transform: scale(1.1)
+        cursor: pointer
+
+    +element('profileImage')
+      height: 75px
+      width: 75px
+      object-fit: cover

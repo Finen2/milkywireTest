@@ -1,5 +1,4 @@
 import Impacter from '@/network/ImpacterRequests'
-import SinglePost from './SinglePost.vue'
 
 export default {
   name: 'modalImpacter',
@@ -7,7 +6,6 @@ export default {
     impacterPosts: {}
   }),
   components: {
-    SinglePost
   },
   props: {
     impacter: '',
@@ -15,7 +13,8 @@ export default {
   },
   methods: {
     showModal(this: any, id: string) {
-      console.log(id)
+      this.$parent.showModal(id);
+      this.hideModal();
     },
     showPostModal(this: any) {
       this.$refs['impacterModal'].show();

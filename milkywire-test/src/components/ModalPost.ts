@@ -24,7 +24,7 @@ export default {
       this.impacter = await Impacter.getSpecificImpacter(this.post.impacter_id);
       this.defineImage()
     },
-    showChildModal(this: any, id: string) {
+    showChildModal(this: any) {
       this.$refs.modalImpacterComponent.showPostModal();
       this.hideModal();
     },

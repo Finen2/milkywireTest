@@ -13,7 +13,8 @@
       <div class="flex-default modalPost__btns">
         <b-icon icon="person-fill" class="modalPost__btns__singleBtn" font-scale="2" variant="dark" v-b-toggle.accordion-1 block></b-icon>
         <b-icon icon="pencil" class="modalPost__btns__singleBtn" font-scale="2" variant="dark" v-b-toggle.accordion-2 block></b-icon>
-        <b-icon icon="trash" class="modalPost__btns__singleBtn" font-scale="2" variant="danger" v-b-toggle.accordion-3 block>Erase Post</b-icon>
+        <b-icon icon="trash" class="modalPost__btns__singleBtn" font-scale="2" variant="danger" v-b-toggle.accordion-3 block></b-icon>
+        <!-- <b-icon icon="arrow-repeat" class="modalPost__btns__singleBtn" font-scale="2" variant="dark" block></b-icon> -->
       </div>
 
       <b-card no-body class="mb-1">
