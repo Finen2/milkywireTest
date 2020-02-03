@@ -14,7 +14,6 @@
         <b-icon icon="person-fill" class="modalPost__btns__singleBtn" font-scale="2" variant="dark" v-b-toggle.accordion-1 block></b-icon>
         <b-icon icon="pencil" class="modalPost__btns__singleBtn" font-scale="2" variant="dark" v-b-toggle.accordion-2 block></b-icon>
         <b-icon icon="trash" class="modalPost__btns__singleBtn" font-scale="2" variant="danger" v-b-toggle.accordion-3 block></b-icon>
-        <!-- <b-icon icon="arrow-repeat" class="modalPost__btns__singleBtn" font-scale="2" variant="dark" block></b-icon> -->
       </div>
 
       <b-card no-body class="mb-1">
@@ -30,9 +29,40 @@
       </b-card>
 
       <b-card no-body class="mb-1">
-        <b-collapse id="accordion-2" accordion="my-accordion" >
-          <b-card-body class="collapseCard">
-            <b-card-text>Edit Post</b-card-text>
+        <b-collapse id="accordion-2" label="Post Description" accordion="my-accordion" >
+          <b-form class="formContainer" @submit="onSubmit" @reset="onReset" v-if="show">
+            <b-form-group id="input-group-1" label="Post Description" label-for="input-1">
+              <b-form-input
+                id="input-1"
+                v-model="editPost.description"
+                required
+                placeholder="Post Description"
+              ></b-form-input>
+            </b-form-group>
+
+            <b-form-group id="input-group-2" label="Image Description" label-for="input-2">
+              <b-form-input
+                id="input-2"
+                v-model="editPost.data.media[0].description"
+                required
+                placeholder="Image Description"
+              ></b-form-input>
+            </b-form-group>
+
+            <b-form-group id="input-group-3" label="Image:" label-for="input-3">
+              <b-form-file
+                v-model="file"
+                :state="Boolean(file)"
+                placeholder="Choose a file or drop it here..."
+                drop-placeholder="Drop file here..."
+                accept=".jpg, .png, .gif"
+              ></b-form-file>
+              <div class="mt-3">Selected file: {{ file ? file.name : '' }}</div>
+            </b-form-group>
+
+            <b-button class="formContainer__btn" type="submit" variant="primary">Submit</b-button>
+            <b-button class="formContainer__btn" type="reset" variant="danger">Reset</b-button>
+          </b-form>
           </b-card-body>
         </b-collapse>
       </b-card>

@@ -13,17 +13,20 @@ class Posts {
     return posts;
   }
   // Post posts
-  static postPost() {
-    axios.post(url + 'posts', {
-    	name: "",
-    	parts: ""
+  static async postPost(data: any) {
+    let requestRespons = {};
+    await axios.post(url + 'posts', data, {
+      headers: {
+        'Content-Type': 'application/json',
+      }
     })
     .then(response => {
-    	console.log(response);
+    	requestRespons = response;
     })
     .catch(error => {
-        console.log(error);
+        requestRespons = error;
     });
+    return requestRespons
   }
   // Get specific post
   static async getSpecificPost(id: string) {
@@ -36,12 +39,24 @@ class Posts {
     return specificPost;
   }
   // Put specific post
-  static putSpecificPost() {
-    console.log('hfjksfhdsjk');
+  static async putSpecificPost(id: any, data: any) {
+    let requestRespons = {};
+    console.log(data)
+    await axios.put(url + 'posts/' + id, data, {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }).then(response => {
+    	requestRespons = response;
+    })
+    .catch(error => {
+        requestRespons = error;
+    });
+    return requestRespons;
   }
   // Delete specific post
-  static deletePost(id: string) {
-     return axios.delete(`${url}posts/${id}`);
+  static async deletePost(id: string) {
+     return await axios.delete(url + 'posts/' + id);
   }
 }
 export default Posts;

@@ -14,5 +14,9 @@ class ImageSize {
   static fullSize(image: string) {
     console.log('this function will provide the original size')
   }
+
+  static checkSize(url: string) {
+    console.log('this function checks the size of the image that is different than stock')
+  }
 }
 export default ImageSize;

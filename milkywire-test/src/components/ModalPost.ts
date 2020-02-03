@@ -1,6 +1,8 @@
-import Posts from '@/network/PostsRequests'
-import Impacter from '@/network/ImpacterRequests'
-import ModalImpacter from './ModalImpacter.vue'
+import Posts from '@/network/PostsRequests';
+import Impacter from '@/network/ImpacterRequests';
+import ModalImpacter from './ModalImpacter.vue';
+import Upload from '@/network/UploadRequests';
+import Date from '@/function/Date'
 
 export default {
   name: 'modal',
@@ -9,6 +11,24 @@ export default {
     image: '',
     imageDescription: '',
     impacter: {},
+    file: null,
+    editPost: {
+      type: "IMAGES",
+      description: "",
+      impacter_id: "",
+      data: {
+        media: [
+          {
+            width: 0,
+            height: 0,
+            description: "",
+            image: "",
+            version: ""
+          }
+        ]
+      }
+    },
+    show: true
   }),
   props: {
     modalId: {},
@@ -22,7 +42,7 @@ export default {
       this.$refs['post-modal'].show('modalPost');
       this.post = await Posts.getSpecificPost(id);
       this.impacter = await Impacter.getSpecificImpacter(this.post.impacter_id);
-      this.defineImage()
+      this.defineImage();
     },
     showChildModal(this: any) {
       this.$refs.modalImpacterComponent.showPostModal();
@@ -50,5 +70,26 @@ export default {
       const previousPostId = this.allPosts[index - 1].id;
       this.showModal(previousPostId);
     },
+    async onSubmit(this: any, evt: any) {
+      if (this.editPost.data.media[0].image !== null) {
+        this.editPost.data.media[0].image = await Upload.uploadPost(this.file);
+      }else{
+        this.editPost.data.media[0].image = this.post.data.media[0].image;
+      }
+      this.editPost.data.media[0].version = 'date'//console.log(Date.getDate());
+      this.editPost.impacter_id = this.post.impacter_id;
+      evt.preventDefault();
+      await Posts.putSpecificPost(this.post.id, JSON.stringify(this.editPost));
+    },
+    onReset(this: any, evt: any) {
+        evt.preventDefault();
+        this.editPost.description = '';
+        this.editPost.data.media[0].description = '';
+        this.file = null;
+        this.show = false;
+        this.$nextTick(() => {
+          this.show = true;
+        })
+      }
   },
 };

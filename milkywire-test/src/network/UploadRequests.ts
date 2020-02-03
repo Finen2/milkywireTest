@@ -1,10 +1,25 @@
 import axios from 'axios';
 import url from './URL';
 
-class Posts {
+class Upload {
   // Upload
-  static upload() {
-    console.log('under constructions');
+  static async uploadPost(imageFile: any) {
+    let requestRespons = {};
+    const formData = new FormData();
+    formData.append('file', imageFile)
+    await axios.post(url + 'upload', formData,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      }
+    })
+    .then(response => {
+    	requestRespons = response.data.url;
+    })
+    .catch(error => {
+        requestRespons = error;
+    });
+    return requestRespons;
   }
 }
-export default Posts;
+export default Upload;
