@@ -2,13 +2,14 @@ import Posts from '@/network/PostsRequests';
 import Impacter from '@/network/ImpacterRequests';
 import ModalImpacter from './ModalImpacter.vue';
 import Upload from '@/network/UploadRequests';
-import Date from '@/function/Date'
+import ImageSize from '@/function/ImageSize'
 
 export default {
   name: 'modal',
   data: () => ({
     post: {},
     image: '',
+    profileImage: '',
     imageDescription: '',
     impacter: {},
     file: null,
@@ -52,7 +53,8 @@ export default {
       this.$refs['post-modal'].hide('modalPost');
     },
     defineImage(this: any) {
-      this.image = this.post.data.media[0].image;
+      this.profileImage = ImageSize.smallImage(this.impacter.profile_image)
+      this.image = ImageSize.mediumImage(this.post.data.media[0].image);
       this.imageDescription = this.post.data.media[0].description;
     },
     erasePost(this: any, id: string) {

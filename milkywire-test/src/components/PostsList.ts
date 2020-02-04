@@ -20,14 +20,6 @@ export default {
     reload(this: any) {
       location.reload();
     },
-    nextPage(this: any) {
-      console.log('trigger next')
-      if((this.currentPage * this.pageSize) < this.posts.length) this.currentPage++;
-    },
-    prevPage(this: any) {
-      console.log('trigger prev')
-      if(this.currentPage > 1) this.currentPage-- ;
-    },
   },
   async created(this: any) {
     this.posts = await Posts.getPosts();

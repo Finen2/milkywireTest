@@ -1,12 +1,11 @@
-import Impacter from '@/network/ImpacterRequests'
+import Impacter from '@/network/ImpacterRequests';
+import ImageSize from '@/function/ImageSize';
 
 export default {
   name: 'modalImpacter',
   data: () => ({
-    impacterPosts: {}
+    impacterPosts: {},
   }),
-  components: {
-  },
   props: {
     impacter: '',
     postId: '',
@@ -29,6 +28,13 @@ export default {
     returnToPostModal(this: any) {
       this.hideModal();
       this.$parent.showModal(this.postId);
+    },
+    postImage(image: any) {
+      return ImageSize.mediumImage(image);
+    },
+    profileImage(image: any) {
+      return ImageSize.smallImage(image);
     }
   },
+
 }

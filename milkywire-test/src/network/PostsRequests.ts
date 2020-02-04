@@ -7,7 +7,7 @@ class Posts {
     let posts = {};
     await axios.get(url + 'posts').then((resp: any) => {
       posts = resp.data;
-    }).catch(error => {
+    }).catch((error: any) => {
       posts = error;
     });
     return posts;
@@ -18,12 +18,12 @@ class Posts {
     await axios.post(url + 'posts', data, {
       headers: {
         'Content-Type': 'application/json',
-      }
+      },
     })
-    .then(response => {
+    .then((response: any) => {
     	requestRespons = response;
     })
-    .catch(error => {
+    .catch((error: any) => {
         requestRespons = error;
     });
     return requestRespons
@@ -33,7 +33,7 @@ class Posts {
     let specificPost = {};
     await axios.get(url + 'posts/' + id).then((resp: any) => {
       specificPost = resp.data;
-    }).catch(error => {
+    }).catch((error: any) => {
       specificPost = error;
     });
     return specificPost;
@@ -41,15 +41,14 @@ class Posts {
   // Put specific post
   static async putSpecificPost(id: any, data: any) {
     let requestRespons = {};
-    console.log(data)
     await axios.put(url + 'posts/' + id, data, {
       headers: {
         'Content-Type': 'application/json',
-      }
-    }).then(response => {
+      },
+    }).then((response: any) => {
     	requestRespons = response;
     })
-    .catch(error => {
+    .catch((error: any) => {
         requestRespons = error;
     });
     return requestRespons;

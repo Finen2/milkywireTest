@@ -21,7 +21,7 @@
           <b-card-body class="collapseCard">
             <div class="flex-spaceEvenly-center collapseCard__bio">
               <h4 class="collapseCard__bio__userName" @click="showChildModal">{{ impacter.name }}</h4>
-              <b-img class="collapseCard__bio__profileImage" :src="impacter.profile_image" rounded="circle" :alt="impacter.name"></b-img>
+              <b-img class="collapseCard__bio__profileImage" :src="profileImage" rounded="circle" :alt="impacter.name"></b-img>
             </div>
             <b-card-text>{{ impacter.bio }}</b-card-text>
           </b-card-body>
